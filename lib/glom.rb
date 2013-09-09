@@ -3,11 +3,10 @@ require "net/http"
 require "json"
 
 class Glom
-  
+  # glom [term] [language]
   # 1. Curl from bower-component-list.herokuapp.com, npmjs.org/package/[package], and rubygems.org/gems/[name]
   # 2. Parse JSON from bower to and direct to Github page for keyword matching
-  # 3. 
-  # glom [term] [language]
+  # 3. Print results into a neat ASCII table
 
 	def initialize(query)
 	  case query[1].downcase
