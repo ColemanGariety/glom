@@ -2,4 +2,4 @@
 
 require 'glom'
 
-glom = Glom.new
+glom = Glom.new(ARGV[0])
