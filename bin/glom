@@ -3,3 +3,4 @@
 require 'glom'
 
 glom = Glom.new ARGV
+glom.search

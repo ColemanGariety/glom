@@ -11,32 +11,28 @@ class Glom
 	def initialize(query)
 	  case query[1].downcase
 	  when 'rb', 'ruby'
-	    urls = ['rubygems.org/gems']
+	    @urls = ['rubygems.org/gems']
 	  when 'js', 'javascript'
-	    urls = ['bower-component-list.herokuapp.com']
+	    @urls = ['bower-component-list.herokuapp.com']
 	  when 'node', 'nodejs'
-	    urls = ['npmjs.org/package']
+	    @urls = ['npmjs.org/package']
 	  else
-	    urls = ['rubygems.org/gems', 'bower-component-list.herokuapp.com', 'npmjs.org/package']
+	    @urls = ['rubygems.org/gems', 'bower-component-list.herokuapp.com', 'npmjs.org/package']
 	  end
-	  
-	  Glom.search(urls)
 	end
 	
-	def search(url)
-	  # Array of packages returned
-	  results = []
-	  
-	  urls.each do |url|
+	def search
+	  @urls.each do |url|
       uri = URI("http://#{url}")
       params = { :limit => 10, :page => 3 }
       uri.query = URI.encode_www_form(params)
       
       res = Net::HTTP.get_response(uri)
-      results << JSON.parse(res.body) if res.is_a?(Net::HTTPSuccess)
+      @results ||= []
+      @results << JSON.parse(res.body) if res.is_a?(Net::HTTPSuccess)
     end
     
-    results[0].each do |package|
+    @results[0].each do |package|
       puts package['name']
     end
   end
