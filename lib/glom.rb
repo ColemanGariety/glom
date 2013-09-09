@@ -20,6 +20,10 @@ class Glom
 	    urls = ['rubygems.org/gems', 'bower-component-list.herokuapp.com', 'npmjs.org/package']
 	  end
 	  
+	  Glom.search(urls)
+	end
+	
+	def search(url)
 	  # Array of packages returned
 	  results = []
 	  
@@ -35,5 +39,5 @@ class Glom
     results[0].each do |package|
       puts package['name']
     end
-	end
+  end
 end
