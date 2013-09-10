@@ -22,15 +22,16 @@ Dir[File.dirname(__FILE__) + "/glom/registries/*.rb"].each do |file|
 end
 
 class Glom
-  REGISTRIES = Glom.constants.select do |constant|
-    Glom.const_get(constant).is_a? class
+  Glom.constants.each do |constant|
+    constant = Glom.const_get(constant)
+    (REGISTRIES ||= []) << constant if constant.is_a? Class
   end
   
 	def initialize(query)
 	  @query = query.dup
 	
 	  REGISTRIES.each do |registry|
-	    Glom.const_get(registry)::KEYWORDS.each do |keyword|
+	    registry::KEYWORDS.each do |keyword|
 	      if query.include? keyword
 	        (@registries ||= []) << registry
 	        @query.slice! keyword
