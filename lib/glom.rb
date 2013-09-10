@@ -1,39 +1,26 @@
 require "glom/version"
+require 'glom/registries'
 require "net/http"
 require "json"
 
 class Glom
-  # glom [term] [language]
-  # 1. Curl from bower-component-list.herokuapp.com, npmjs.org/package/[package], and rubygems.org/gems/[name]
-  # 2. Parse JSON from bower to and direct to Github page for keyword matching
-  # 3. Print results into a neat ASCII table
-
 	def initialize(query)
-	  case query[1].downcase
-	  when 'rb', 'ruby'
-	    @urls = ['rubygems.org/gems']
-	  when 'js', 'javascript'
-	    @urls = ['bower-component-list.herokuapp.com']
-	  when 'node', 'nodejs'
-	    @urls = ['npmjs.org/package']
-	  else
-	    @urls = ['rubygems.org/gems', 'bower-component-list.herokuapp.com', 'npmjs.org/package']
+	  REGISTRIES.each do |registry, keywords|
+	    keywords.each do |keyword|
+	     (@registries ||= []) << registry if query[0].include? keyword
+	    end
 	  end
 	end
 	
 	def search
-	  @urls.each do |url|
-      uri = URI("http://#{url}")
-      params = { :limit => 10, :page => 3 }
-      uri.query = URI.encode_www_form(params)
-      
-      res = Net::HTTP.get_response(uri)
-      @results ||= []
-      @results << JSON.parse(res.body) if res.is_a?(Net::HTTPSuccess)
-    end
-    
-    @results[0].each do |package|
-      puts package['name']
-    end
-  end
+	end
+	
+	def filter
+	end
+	
+	def sort
+	end
+	
+	def display
+	end
 end

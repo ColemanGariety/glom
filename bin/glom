@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
 require 'glom'
-
-glom = Glom.new ARGV
-glom.search
+                      # 1. `glom [@string]`
+glom = Glom.new ARGV  # 2. Use environment-specific keywords from @string to get an array of @registries to search
+glom.search           # 3. Search for @string in each of the @registries and join the results
+glom.sort             # 4. Sort the JSON by ((stars * followers of top contributor) / issues)
+glom.display          # 5. Print [title], [description], [top contributor], [stars], and [install command] into an ASCII table in terminal
