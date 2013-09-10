@@ -1,26 +1,44 @@
 # Glom
 
-TODO: Write a gem description
+### Problem
+
+    "To find a pakcage for templating my .js project, I must open github.com, sift through people's crappy projects, and locate the install command"
+
+### Solution
+
+    $ glom 'javascript templating'
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'glom'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
 
     $ gem install glom
 
 ## Usage
 
-TODO: Write usage instructions here
+    $ glom 'javascript templating'
+    
+    Searching for 'templating' in bower.io and npmjs.org...
+    
+    +---------------+---------+
+    |  Mustache.js  |  bower  |
+    +---------------+---------+
 
 ## Contributing
+
+Support for APIs can be added easily by adding `[ApiName].rb` to the `lib/glom/registries` directory.
+
+`[ApiName].rb` should be a module with a `KEYWORDS` array and a `get()` method.
+
+Example:
+
+    # npm.rb
+    
+    module Npm
+      KEYWORDS = ['npm', 'node', 'nodejs', 'js', 'javascript']
+      
+      def get
+        # return [] of packages in here
+      end
+    end
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
