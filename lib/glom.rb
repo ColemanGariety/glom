@@ -22,7 +22,7 @@ end
 class Glom
   self.constants.each do |constant|
     constant = self.const_get constant
-    (REGISTRIES ||= []) << constant if constant.is_a? Class
+    (REGISTRIES ||= []) << constant if constant.is_a? Module
   end
   
 	def initialize(query)
@@ -39,26 +39,22 @@ class Glom
 	  end
 	  
 	  @registries = REGISTRIES unless defined? @registries
-	  
-	  search
 	end
 
 	def search
 	  @registries.each do |registry|
-	    (@packages ||= []) << registry.new(@query)
+	    (@packages ||= []).concat(registry.get(@query))
 	  end
-	  
-	  sort
 	end
 	
 	def sort
 	  # @packages.sort_by do |package|
 	  # end
-	  
-	  display
 	end
 	
 	def display
-	  puts @packages
+	  @packages.each do |package|
+	    puts package['name']
+	  end
 	end
 end

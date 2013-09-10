@@ -1,9 +1,15 @@
 require 'net/http'
+require 'json'
 
-class Glom::Bower
+module Glom::Bower
   KEYWORDS = ['bower', 'front-end', 'frontend', 'js', 'javascript']
+  URL = 'bower registry'
   
-  def initialize(query)
-	  puts "Searching for '#{@query}' in bower..."
+  def self.get(query)
+	  puts "Searching #{URL} for '#{query}'..."
+	  
+	  uri = URI('https://bower-component-list.herokuapp.com')
+    res = Net::HTTP.get(uri)
+    JSON.parse(res)
   end
 end

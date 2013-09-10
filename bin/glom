@@ -3,7 +3,10 @@
 require 'glom'
 
 begin
-  Glom.new ARGV[0].clone
+  glom = Glom.new ARGV[0].clone
+  glom.search
+  glom.sort
+  glom.display
 rescue Gem::SystemExitException => e
   exit e.exit_code
 end
