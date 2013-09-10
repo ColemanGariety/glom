@@ -1,29 +1,22 @@
 # Glom
 
-#### Problem
+### Problem
 
-"To find a pakcage for templating my .js project, I must open github.com, sift through people's crappy projects, and locate the install command"
+_To find a package for templating my new js project, I must open github.com and sift through people's crappy repos._
 
-#### Solution
-
-1. Install Glom
-2. Run a terminal command
-3. ???
-4. Profit
-
-## Installation
-
-    $ gem install glom
-
-## Usage
+### Solution
 
     $ glom 'javascript templating'
     
     Searching for 'templating' in bower.io and npmjs.org...
     
-    +---------------+---------+
-    |  Mustache.js  |  bower  |
-    +---------------+---------+
+    +---------------+--------------------------+
+    |  Mustache.js  |  bower install mustache  |
+    +---------------+--------------------------+
+
+## Installation
+
+    $ gem install glom
 
 ## Contributing
 
@@ -42,6 +35,8 @@ Example:
         # return [] of packages in here
       end
     end
+
+#### Git for ~~losers~~ dummies
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
