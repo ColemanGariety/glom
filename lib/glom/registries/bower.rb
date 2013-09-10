@@ -3,7 +3,7 @@ require 'json'
 
 module Glom::Bower
   KEYWORDS = ['bower', 'front-end', 'frontend', 'js', 'javascript']
-  URL = 'bower registry'
+  URL = 'bower.io'
   
   def self.get(query)
 	  puts "Searching #{URL} for '#{query}'..."

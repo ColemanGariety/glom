@@ -1,9 +1,10 @@
 require 'net/http'
 
-class Glom::Npm
+module Glom::Npm
   KEYWORDS = ['npm', 'node', 'nodejs', 'js', 'javascript']
+  URL = "npmjs.org"
 
-  def initialize(query)
+  def self.get(query)
 	  puts "Searching npm registry for '#{query}'..."
   end
 end
