@@ -1,12 +1,15 @@
 # Glom
 
-### Problem
+#### Problem
 
-    "To find a pakcage for templating my .js project, I must open github.com, sift through people's crappy projects, and locate the install command"
+"To find a pakcage for templating my .js project, I must open github.com, sift through people's crappy projects, and locate the install command"
 
-### Solution
+#### Solution
 
-    $ glom 'javascript templating'
+1. Install Glom
+2. Run a terminal command
+3. ???
+4. Profit
 
 ## Installation
 
