@@ -1,3 +1,8 @@
+##
+# 
+# Glom by Jackson Gariety
+# Intelligent package search, inside your shell.
+# 
 # 1. `glom [@string]`
 # 2. (initialize) Use environment-specific keywords from @string to get an array of @registries to search
 # 3. (search) Search for @string in each of the @registries and join the results
@@ -24,12 +29,13 @@ class Glom
 	  end
 	  
 	  if defined? @registries then search @registries
-	  else search REGISTRIES end
+	  else search REGISTRIES
+	  end
 	end
 	
 	def search(registries)
 	  registries.each do |registry|
-	    puts "search for '#{@query}' in #{registry} "
+	    puts "Searching for '#{@query}' in #{registry}..."
 	  end
 	end
 	
