@@ -13,17 +13,15 @@
 # 2. Retreive the latest version of the JSON file
 
 require "glom/version"
-require "net/http"
-require "json"
 
 # Require individual registry logic
-Dir[File.dirname(__FILE__) + "/glom/registries/*.rb"].each do |file|
+Dir["#{File.dirname __FILE__}/glom/registries/*.rb"].each do |file|
   require file
 end
 
 class Glom
-  Glom.constants.each do |constant|
-    constant = Glom.const_get(constant)
+  self.constants.each do |constant|
+    constant = self.const_get constant
     (REGISTRIES ||= []) << constant if constant.is_a? Class
   end
   
@@ -40,19 +38,27 @@ class Glom
 	    end
 	  end
 	  
-	  if defined? @registries then search @registries
-	  else search REGISTRIES end
+	  @registries = REGISTRIES unless defined? @registries
+	  
+	  search
 	end
-	
-	def search(registries)
-	  registries.each do |registry|
-	    puts registry
+
+	def search
+	  @registries.each do |registry|
+	    (@packages ||= []) << registry.new(@query)
 	  end
+	  
+	  sort
 	end
 	
 	def sort
+	  # @packages.sort_by do |package|
+	  # end
+	  
+	  display
 	end
 	
 	def display
+	  puts @packages
 	end
 end

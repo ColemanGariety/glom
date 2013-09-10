@@ -1,7 +1,10 @@
+require 'net/http'
+
 class Glom::Rubygems
   KEYWORDS = ['ruby', 'rb', 'rubygem', 'gem']
+  URL = 'rubygems.org'
 
-  def initialize
-	  puts "Searching for '#{@query}' in rubygems..."
+  def initialize(query)
+	  puts "Searching #{URL} for '#{query}'..."
   end
 end
