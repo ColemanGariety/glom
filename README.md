@@ -1,10 +1,10 @@
 # Glom
 
-### Problem
+#### Problem:
 
 _To find a package for templating my new js project, I must open github.com and sift through people's crappy repos._
 
-### Solution
+#### Solution:
 
     $ glom 'javascript templating'
     
@@ -32,7 +32,7 @@ Example:
       KEYWORDS = ['npm', 'node', 'nodejs', 'js', 'javascript']
       
       def get
-        # return [] of packages in here
+        # return array of packages here plz
       end
     end
 
