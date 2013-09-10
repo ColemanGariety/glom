@@ -3,7 +3,7 @@
 require 'glom'
 
 begin
-  Glom.new ARGV.clone
+  Glom.new ARGV[0].clone
 rescue Gem::SystemExitException => e
   exit e.exit_code
 end

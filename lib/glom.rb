@@ -17,15 +17,21 @@ require "net/http"
 require "json"
 
 # Require individual registry logic
-Dir["#{File.dirname(__FILE__)}/glom/registries/*.rb"].each { |file| require file }
+Dir[File.dirname(__FILE__) + "/glom/registries/*.rb"].each do |file|
+  require file
+end
 
 class Glom
+  REGISTRIES = Glom.constants.select do |constant|
+    Glom.const_get(constant).is_a? class
+  end
+  
 	def initialize(query)
-	  @query = ARGV[0].dup
+	  @query = query.dup
 	
-	  REGISTRIES.each do |registry, keywords|
-	    keywords.each do |keyword|
-	      if ARGV[0].include? keyword
+	  REGISTRIES.each do |registry|
+	    Glom.const_get(registry)::KEYWORDS.each do |keyword|
+	      if query.include? keyword
 	        (@registries ||= []) << registry
 	        @query.slice! keyword
 	        @query.strip!
@@ -34,16 +40,12 @@ class Glom
 	  end
 	  
 	  if defined? @registries then search @registries
-	  else search REGISTRIES
-	  end
+	  else search REGISTRIES end
 	end
 	
 	def search(registries)
 	  registries.each do |registry|
-	    
-      require registry.
-      
-      Kernel.const_get(registry.capitalize)
+	    puts registry
 	  end
 	end
 	
