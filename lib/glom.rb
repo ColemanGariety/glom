@@ -8,14 +8,19 @@
 # 3. (search) Search for @string in each of the @registries and join the results
 # 4. (sort) Sort the JSON by ((stars * followers of top contributor) / issues)
 # 5. (display) Print [title], [description], [top contributor], [stars], and [install command] into an ASCII table in terminal
+#
+# 1. `glom update`
+# 2. Retreive the latest version of the JSON file
 
 require "glom/version"
-require 'glom/registries'
 require "net/http"
 require "json"
 
+# Require individual registry logic
+Dir["#{File.dirname(__FILE__)}/glom/registries/*.rb"].each { |file| require file }
+
 class Glom
-	def initialize
+	def initialize(query)
 	  @query = ARGV[0].dup
 	
 	  REGISTRIES.each do |registry, keywords|
@@ -35,7 +40,10 @@ class Glom
 	
 	def search(registries)
 	  registries.each do |registry|
-	    puts "Searching for '#{@query}' in #{registry}..."
+	    
+      require registry.
+      
+      Kernel.const_get(registry.capitalize)
 	  end
 	end
 	

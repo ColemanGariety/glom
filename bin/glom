@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
 
 require 'glom'
-                      
-glom = Glom.new
+
+begin
+  Glom.new ARGV.clone
+rescue Gem::SystemExitException => e
+  exit e.exit_code
+end
