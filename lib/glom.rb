@@ -6,11 +6,13 @@
 # 1. `glom [@string]`
 # 2. (initialize) Use environment-specific keywords from @string to get an array of @registries to search
 # 3. (search) Search for @string in each of the @registries and join the results
-# 4. (sort) Sort the JSON by ((stars * followers of top contributor) / issues)
+# 4. (sort) Sort the JSON by (stars), and maybe ((stars * followers of top contributor) / issues) in the future
 # 5. (display) Print [title], [description], [top contributor], [stars], and [install command] into an ASCII table in terminal
 #
 # 1. `glom update`
-# 2. Retreive the latest version of the JSON file
+# 2. Retreive the latest version of the JSON files
+#
+##
 
 require "glom/version"
 
@@ -48,8 +50,9 @@ class Glom
 	end
 	
 	def sort
-	  # @packages.sort_by do |package|
-	  # end
+	  @packages.sort_by! do |package|
+	    -package['stars']
+	  end
 	end
 	
 	def display

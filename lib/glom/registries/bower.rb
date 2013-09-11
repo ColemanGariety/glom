@@ -10,6 +10,9 @@ module Glom::Bower
 	  
 	  uri = URI('https://bower-component-list.herokuapp.com')
     res = Net::HTTP.get(uri)
-    JSON.parse(res)
+    
+    JSON.parse(res).select do |package|
+      package['description'].include? query if package['description'].is_a? String
+    end
   end
 end
