@@ -1,7 +1,8 @@
 ##
 # 
-# Glom by Jackson Gariety
-# Intelligent package search, inside your shell.
+# Title: Glom by
+# Author: Jackson Gariety
+# Description: Intelligent package search, inside your shell.
 # 
 # 1. `glom [@string]`
 # 2. (initialize) Use environment-specific keywords from @string to get an array of @registries to search
@@ -46,7 +47,7 @@ class Glom
 
 	def search
 	  @registries.each do |registry|
-	    (@packages ||= []).concat(registry.get(@query))
+	    (@packages ||= []).concat registry.get(@query)
 	  end
 	end
 	
@@ -57,7 +58,11 @@ class Glom
 	end
 	
 	def display
-	  table = Terminal::Table.new :rows => @packages
+	  table = Terminal::Table.new(
+	    :headings => ['name', 'description', 'author', 'stars', 'registry'],
+	    :rows => @packages
+	  )
+	  
 	  puts table
 	end
 end
