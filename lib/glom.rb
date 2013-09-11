@@ -57,7 +57,8 @@ class Glom
 	
 	def display
 	  @packages.each do |package|
-	    puts package['name']
+	    puts "+-#{package['name'].split('').map { |char| "-" }.join('')}-+"
+	    puts "| #{package['name']} |"
 	  end
 	end
 end
