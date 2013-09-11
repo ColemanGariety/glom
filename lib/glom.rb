@@ -15,6 +15,7 @@
 ##
 
 require "glom/version"
+require 'terminal-table'
 
 # Require individual registry logic
 Dir["#{File.dirname __FILE__}/glom/registries/*.rb"].each do |file|
@@ -56,9 +57,7 @@ class Glom
 	end
 	
 	def display
-	  @packages.each do |package|
-	    puts "+-#{package['name'].split('').map { |char| "-" }.join('')}-+"
-	    puts "| #{package['name']} |"
-	  end
+	  table = Terminal::Table.new :rows => @packages
+	  puts table
 	end
 end
