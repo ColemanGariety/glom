@@ -51,6 +51,7 @@ class Glom
 
 	def search
 	  @registries.each do |registry|
+	    puts "\nSearching `#{registry::URL}` for `#{@query}`...\n"
 	    (@packages ||= []).concat registry.get(@query)
 	  end
 	end
@@ -63,12 +64,13 @@ class Glom
 	
 	def display
 	  table = Terminal::Table.new
-	  table.headings = ['name', 'description', 'author', 'stars', 'registry']
+	  table.headings = ['name', 'description', 'author', 'stars', 'updated']
 	  table.rows = @packages
 	  table.style = {
   	  :width => `/usr/bin/env tput cols`.to_i
 	  }
 	  
+	  puts ""
 	  puts table
 	end
 end

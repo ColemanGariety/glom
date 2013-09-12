@@ -10,9 +10,12 @@ _To find a package for templating my new js project, I must open github.com and 
     
     Searching for 'templating' in bower.io and npmjs.org...
     
-    +---------------+--------------------------+
-    |  Mustache.js  |  bower install mustache  |
-    +---------------+--------------------------+
+    +-----------------+-----------------------------------------------------+---------------+-------+----------+
+    | name            | description                                         | author        | stars | registry |
+    +-----------------+-----------------------------------------------------+---------------+-------+----------+
+    | mustache        | Minimal templating with {{mustaches}} in            | janl          | 5448  | bower    |
+    |                 | JavaScript                                          |               |       |          |
+    +-----------------+-----------------------------------------------------+---------------+-------+----------+
 
 ## Installation
 
