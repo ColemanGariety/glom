@@ -1,6 +1,6 @@
 ##
 # 
-# Title: Glom by
+# Title: Glom
 # Author: Jackson Gariety
 # Description: Intelligent package search, inside your shell.
 # 
@@ -15,11 +15,15 @@
 #
 ##
 
-require "glom/version"
-require 'terminal-table'
+require 'glom/version'
 
 # Require individual registry logic
 Dir["#{File.dirname __FILE__}/glom/registries/*.rb"].each do |file|
+  require file
+end
+
+# Require terminal-table
+Dir["#{File.dirname __FILE__}/glom/terminal-table/*.rb"].each do |file|
   require file
 end
 
@@ -53,15 +57,17 @@ class Glom
 	
 	def sort
 	  @packages.sort_by! do |package|
-	    -package['stars']
+	    -package[3]
 	  end
 	end
 	
 	def display
-	  table = Terminal::Table.new(
-	    :headings => ['name', 'description', 'author', 'stars', 'registry'],
-	    :rows => @packages
-	  )
+	  table = Terminal::Table.new
+	  table.headings = ['name', 'description', 'author', 'stars', 'registry']
+	  table.rows = @packages
+	  table.style = {
+  	  :width => `/usr/bin/env tput cols`.to_i
+	  }
 	  
 	  puts table
 	end
