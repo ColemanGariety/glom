@@ -19,9 +19,8 @@ _To find a package for templating my new js project, I must open github.com and 
     | hogan           | A compiler for the      | twitter       | 2912  | 25 days        | bower    |
     |                 | Mustache templating     |               |       |                |          |
     |                 | language                |               |       |                |          |
+    +-----------------+-------------------------+---------------+-------+----------------+----------+
     
-    ...
-
 ## Installation
 
     $ gem install glom
