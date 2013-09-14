@@ -1,4 +1,5 @@
 require 'glom/version'
+require 'net/http'
 require 'json'
 require 'tmpdir'
 
@@ -63,13 +64,23 @@ module Glom
 	end
 	
 	def get(address)
-	  cache = "#{Dir.tmpdir}/#{address.gsub(/[\x00\/\\:\*\?\"<>\|]/, '_')}.json"
+	  cache = "#{Dir.tmpdir}/#{address.gsub(/[\x00\/\\:\*\?\"<>\|]/, '_').gsub('.json', '')}.json"
 	  
 	  if File.exist? cache
       json = IO.read(cache)
     else
-  	  uri = URI(address)
-      json = Net::HTTP.get(uri)
+  	  url = URI.parse(address)
+  	  
+      http = Net::HTTP.new(url.host, url.port)
+      if address =~ /^https/
+        http.use_ssl = true
+        # http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      end
+      
+      req = Net::HTTP::Get.new(url.request_uri)
+      res = http.request(req)
+      
+      json = res.body
       
       output = File.new(cache, 'w')
       output.puts json

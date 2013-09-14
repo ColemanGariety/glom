@@ -1,4 +1,3 @@
-require 'net/http'
 require 'json'
 require 'time'
 require 'glom/time/time_ago_in_words'
