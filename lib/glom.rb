@@ -28,7 +28,7 @@ module Glom
 	    end
 	  end
 	  
-	  @registries = Glom::REGISTRIES unless defined? @registries
+	  @registries = @@registries_all unless defined? @registries
 	end
 
 	def search
