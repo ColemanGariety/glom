@@ -8,14 +8,19 @@ _To find a package for templating my new js project, I must open github.com and 
 
     $ glom 'javascript templating'
     
-    Searching for 'templating' in bower.io and npmjs.org...
+    Searching `https://bower-component-list.herokuapp.com` for `templating`...
     
-    +-----------------+-----------------------------------------------------+---------------+-------+----------+
-    | name            | description                                         | author        | stars | registry |
-    +-----------------+-----------------------------------------------------+---------------+-------+----------+
-    | mustache        | Minimal templating with {{mustaches}} in            | janl          | 5448  | bower    |
-    |                 | JavaScript                                          |               |       |          |
-    +-----------------+-----------------------------------------------------+---------------+-------+----------+
+    +-----------------+-------------------------+---------------+-------+----------------+----------+
+    | Name            | Description             | Author        | Stars | Last Updated   | Registry |
+    +-----------------+-------------------------+---------------+-------+----------------+----------+
+    | mustache        | Minimal templating      | janl          | 5457  | 3 months       | bower    |
+    |                 | with {{mustaches}}      |               |       |                |          |
+    |                 | in JavaScript           |               |       |                |          |
+    | hogan           | A compiler for the      | twitter       | 2912  | 25 days        | bower    |
+    |                 | Mustache templating     |               |       |                |          |
+    |                 | language                |               |       |                |          |
+    
+    ...
 
 ## Installation
 
