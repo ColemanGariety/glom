@@ -31,7 +31,10 @@ module Glom
 
 	def search
 	  @registries.each do |registry|
+	    include registry
+	    
 	    puts "\nSearching `#{registry::URL}` for `#{@query}`...\n"
+	    
 	    (@packages ||= []).concat registry.standardize(@query)
 	  end
 	end
@@ -59,7 +62,7 @@ module Glom
 	  puts table
 	end
 	
-	def self.get(address)
+	def get(address)
 	  cache = "#{Dir.tmpdir}/#{address.gsub(/[\x00\/\\:\*\?\"<>\|]/, '_')}.json"
 	  
 	  if File.exist? cache

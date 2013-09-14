@@ -9,7 +9,7 @@ module Glom::Npm
   NAME = 'npm'
   URL = 'http://jiyinyiyong.github.io/nipster/packages.json'
   
-  def self.standardize(query)
+  def standardize(query)
     json = Glom.get(URL)
     
     packages = JSON.parse(json)['packages'].select do |package|

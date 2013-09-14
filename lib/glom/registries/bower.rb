@@ -11,7 +11,7 @@ module Glom::Bower
   NAME = 'bower'
   URL = 'https://bower-component-list.herokuapp.com'
   
-  def self.standardize(query)
+  def standardize(query)
 	  json = Glom.get(URL)
     
     packages = JSON.parse(json).select do |package|
