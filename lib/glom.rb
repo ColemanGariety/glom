@@ -48,9 +48,14 @@ module Glom
 	
 	def display
 	  # Require terminal-table
-    Dir["#{File.dirname __FILE__}/glom/terminal-table/*.rb"].each do |file|
-      require file
-    end
+	  require 'glom/terminal-table/cell.rb'
+	  require 'glom/terminal-table/core_ext.rb'
+	  require 'glom/terminal-table/row.rb'
+	  require 'glom/terminal-table/separator.rb'
+	  require 'glom/terminal-table/style.rb'
+	  require 'glom/terminal-table/table_helper.rb'
+	  require 'glom/terminal-table/table.rb'
+	  require 'glom/terminal-table/version.rb'
     
 	  table = Terminal::Table.new
 	  table.headings = ['Name', 'Description', 'Author', 'Stars', 'Last Updated', 'Registry']
