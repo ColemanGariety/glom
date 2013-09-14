@@ -3,7 +3,7 @@ require 'time'
 require 'glom/time/time_ago_in_words'
 
 module Glom::Bower
-  KEYWORDS = ['bower', 'front-end', 'frontend', 'js', 'javascript']
+  KEYWORDS = ['bower', 'front-end', 'frontend', 'js', 'javascript', 'client-side', 'clientside']
   NAME = 'bower'
   URL = 'https://bower-component-list.herokuapp.com'
   

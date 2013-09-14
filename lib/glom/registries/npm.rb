@@ -3,7 +3,7 @@ require 'time'
 require 'glom/time/time_ago_in_words'
 
 module Glom::Npm
-  KEYWORDS = ['npm', 'node', 'nodejs', 'js', 'javascript']
+  KEYWORDS = ['npm', 'node', 'nodejs', 'js', 'javascript', 'server-side', 'serverside']
   NAME = 'npm'
   URL = 'http://jiyinyiyong.github.io/nipster/packages.json'
   
