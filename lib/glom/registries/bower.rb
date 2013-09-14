@@ -8,6 +8,7 @@ include ActionView::Helpers::DateHelper
 
 module Glom::Bower
   KEYWORDS = ['bower', 'front-end', 'frontend', 'js', 'javascript']
+  NAME = 'bower'
   URL = 'https://bower-component-list.herokuapp.com'
   
   def self.standardize(query)
@@ -18,7 +19,7 @@ module Glom::Bower
     end
     
     packages.map do |package|
-      [package['name'], package['description'], package['owner'], package['stars'], time_ago_in_words(Time.parse(package['updated'])), 'bower']
+      [package['name'], package['description'], package['owner'], package['stars'], time_ago_in_words(Time.parse(package['updated'])), NAME]
     end
   end
 end
