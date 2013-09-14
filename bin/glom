@@ -2,11 +2,13 @@
 
 require 'glom'
 
+include Glom
+
 begin
-  glom = Glom.new ARGV[0].clone
-  glom.search
-  glom.sort
-  glom.display
+  detect ARGV[0].clone  # Use environment-specific keywords from @string to get an array of @registries to search
+  search                # Search for @string in each of the @registries and join the results
+  sort                  # Sort the JSON by (stars), and maybe ((stars * followers of top contributor) / issues) in the future
+  display               # Print [title], [description], [top contributor], [stars], and [install command] into an ASCII table in terminal
 rescue Gem::SystemExitException => e
   exit e.exit_code
 end

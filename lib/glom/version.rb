@@ -1,3 +1,3 @@
-class Glom
+module Glom
   VERSION = "0.0.1"
 end
