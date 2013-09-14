@@ -3,6 +3,7 @@ require 'rubygems'
 require 'net/http'
 require 'json'
 require 'tmpdir'
+require 'time'
 
 # Require individual registry logic
 Dir["#{File.dirname __FILE__}/glom/registries/*.rb"].each do |file|
@@ -72,7 +73,7 @@ module Glom
 	def get(address)
 	  cache = "#{Dir.tmpdir}/#{address.gsub(/[\x00\/\\:\*\?\"<>\|]/, '_').gsub('.json', '')}.json"
 	  
-	  if File.exist? cache
+	  if File.exist?(cache) and File.mtime(cache) > (Time.now - 86400) # there are 86400 seconds in a day
       json = IO.read(cache)
     else
   	  url = URI.parse(address)
