@@ -10,6 +10,8 @@ _To find a package for templating my new js project, I must open github.com and 
     
     Searching `https://bower-component-list.herokuapp.com` for `templating`...
     
+    Searching `http://jiyinyiyong.github.io/nipster/packages.json` for `templating`...
+    
     +-----------------+-------------------------+---------------+-------+----------------+----------+
     | Name            | Description             | Author        | Stars | Last Updated   | Registry |
     +-----------------+-------------------------+---------------+-------+----------------+----------+
