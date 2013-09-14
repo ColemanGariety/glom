@@ -3,6 +3,7 @@ require 'json'
 require 'rubygems'
 require 'action_view'
 require 'time'
+require 'glom/time/time_ago_in_words'
 
 include ActionView::Helpers::DateHelper
 
@@ -19,7 +20,7 @@ module Glom::Bower
     end
     
     packages.map do |package|
-      [package['name'], package['description'], package['owner'], package['stars'], time_ago_in_words(Time.parse(package['updated'])), NAME]
+      [package['name'], package['description'], package['owner'], package['stars'], Time.parse(package['updated']).time_ago_in_words, NAME]
     end
   end
 end

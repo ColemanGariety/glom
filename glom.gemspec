@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Glom::VERSION
   spec.authors       = ["Jackson Gariety"]
   spec.email         = ["personal@jacksongariety.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = "Intelligent package search, without leaving your shell."
+  spec.summary       = "Intelligent package search, without leaving your shell."
+  spec.homepage      = "https://github.com/JacksonGariety/glom"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

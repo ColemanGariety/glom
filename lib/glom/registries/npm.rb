@@ -3,6 +3,7 @@ require 'json'
 require 'rubygems'
 require 'action_view'
 require 'time'
+require 'glom/time/time_ago_in_words'
 
 module Glom::Npm
   KEYWORDS = ['npm', 'node', 'nodejs', 'js', 'javascript']
@@ -17,7 +18,7 @@ module Glom::Npm
     end
 
     packages.map do |package|
-      [package[0], package[1], package[2], package[5], time_ago_in_words(Time.parse(package[3])), NAME]
+      [package[0], package[1], package[2], package[5], Time.parse(package[3]).time_ago_in_words, NAME]
     end
   end
 end
