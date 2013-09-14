@@ -1,4 +1,5 @@
 require 'glom/version'
+require 'rubygems'
 require 'net/http'
 require 'json'
 require 'tmpdir'
@@ -11,13 +12,13 @@ end
 module Glom
   self.constants.each do |constant|
     constant = self.const_get constant
-    (REGISTRIES ||= []) << constant if constant.is_a? Module
+    (@@registries_all ||= []) << constant if constant.is_a? Module
   end
   
 	def detect(query)
 	  @query = query.dup
-	
-	  REGISTRIES.each do |registry|
+	 
+	  @@registries_all.each do |registry|
 	    registry::KEYWORDS.each do |keyword|
 	      if query.include? keyword
 	        (@registries ||= []) << registry
@@ -27,7 +28,7 @@ module Glom
 	    end
 	  end
 	  
-	  @registries = REGISTRIES unless defined? @registries
+	  @registries = Glom::REGISTRIES unless defined? @registries
 	end
 
 	def search
