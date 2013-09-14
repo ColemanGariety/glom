@@ -13,11 +13,11 @@ module Glom::Npm
     json = Glom.get(URL)
     
     packages = JSON.parse(json)['packages'].select do |package|
-      package[1].include? query if package[1].is_a? String and package[3].is_a? String
+      package[1].downcase.include? query.downcase if package[1].is_a? String and package[3].is_a? String and !package[5].nil?
     end
 
     packages.map do |package|
-      [package[0], package[1], package[2], package[6], time_ago_in_words(Time.parse(package[3])), NAME]
+      [package[0], package[1], package[2], package[5], time_ago_in_words(Time.parse(package[3])), NAME]
     end
   end
 end

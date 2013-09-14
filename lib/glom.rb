@@ -24,11 +24,6 @@ Dir["#{File.dirname __FILE__}/glom/registries/*.rb"].each do |file|
   require file
 end
 
-# Require terminal-table
-Dir["#{File.dirname __FILE__}/glom/terminal-table/*.rb"].each do |file|
-  require file
-end
-
 class Glom
   self.constants.each do |constant|
     constant = self.const_get constant
@@ -65,9 +60,14 @@ class Glom
 	end
 	
 	def display
+	  # Require terminal-table
+    Dir["#{File.dirname __FILE__}/glom/terminal-table/*.rb"].each do |file|
+      require file
+    end
+    
 	  table = Terminal::Table.new
-	  table.headings = ['name', 'description', 'author', 'stars', 'updated']
-	  table.rows = @packages
+	  table.headings = ['Name', 'Description', 'Author', 'Stars', 'Last Updated', 'Registry']
+	  table.rows = @packages[0..20]
 	  table.style = {
   	  :width => `/usr/bin/env tput cols`.to_i
 	  }
