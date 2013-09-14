@@ -49,25 +49,28 @@ module Glom
 	end
 	
 	def display
-	  # Require terminal-table
-	  require 'glom/terminal-table/cell.rb'
-	  require 'glom/terminal-table/core_ext.rb'
-	  require 'glom/terminal-table/row.rb'
-	  require 'glom/terminal-table/separator.rb'
-	  require 'glom/terminal-table/style.rb'
-	  require 'glom/terminal-table/table_helper.rb'
-	  require 'glom/terminal-table/table.rb'
-	  require 'glom/terminal-table/version.rb'
-    
-	  table = Terminal::Table.new
-	  table.headings = ['Name', 'Description', 'Author', 'Stars', 'Last Updated', 'Registry']
-	  table.rows = @packages[0..20]
-	  table.style = {
-  	  :width => `/usr/bin/env tput cols`.to_i
-	  }
-	  
-	  puts ""
-	  puts table
+	  if @packages.size > 0
+  	  # Require terminal-table
+  	  require 'glom/terminal-table/cell.rb'
+  	  require 'glom/terminal-table/core_ext.rb'
+  	  require 'glom/terminal-table/row.rb'
+  	  require 'glom/terminal-table/separator.rb'
+  	  require 'glom/terminal-table/style.rb'
+  	  require 'glom/terminal-table/table_helper.rb'
+  	  require 'glom/terminal-table/table.rb'
+  	  require 'glom/terminal-table/version.rb'
+      
+  	  table = Terminal::Table.new
+  	  table.headings = ['Name', 'Description', 'Author', 'Stars', 'Last Updated', 'Registry']
+  	  table.rows = @packages[0..20]
+  	  table.style = {
+    	  :width => `/usr/bin/env tput cols`.to_i
+  	  }
+  	  
+  	  puts "\n#{table}\n\n"
+    else
+      puts "\nNo packages for that query.\n\n"
+    end
 	end
 	
 	def get(address)
