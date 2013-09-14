@@ -16,6 +16,8 @@
 ##
 
 require 'glom/version'
+require 'json'
+require 'tmpdir'
 
 # Require individual registry logic
 Dir["#{File.dirname __FILE__}/glom/registries/*.rb"].each do |file|
@@ -52,7 +54,7 @@ class Glom
 	def search
 	  @registries.each do |registry|
 	    puts "\nSearching `#{registry::URL}` for `#{@query}`...\n"
-	    (@packages ||= []).concat registry.get(@query)
+	    (@packages ||= []).concat registry.standardize(@query)
 	  end
 	end
 	
@@ -72,5 +74,22 @@ class Glom
 	  
 	  puts ""
 	  puts table
+	end
+	
+	def self.get(address)
+	  cache = "#{Dir.tmpdir}/#{address.gsub(/[\x00\/\\:\*\?\"<>\|]/, '_')}.json"
+	  
+	  if File.exist? cache
+      json = IO.read(cache)
+    else
+  	  uri = URI(address)
+      json = Net::HTTP.get(uri)
+      
+      output = File.new(cache, 'w')
+      output.puts json
+      output.close
+    end
+    
+    return json
 	end
 end
