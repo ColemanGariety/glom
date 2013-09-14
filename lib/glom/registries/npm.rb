@@ -1,7 +1,5 @@
 require 'net/http'
 require 'json'
-require 'rubygems'
-require 'action_view'
 require 'time'
 require 'glom/time/time_ago_in_words'
 

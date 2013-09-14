@@ -1,11 +1,7 @@
 require 'net/http'
 require 'json'
-require 'rubygems'
-require 'action_view'
 require 'time'
 require 'glom/time/time_ago_in_words'
-
-include ActionView::Helpers::DateHelper
 
 module Glom::Bower
   KEYWORDS = ['bower', 'front-end', 'frontend', 'js', 'javascript']
