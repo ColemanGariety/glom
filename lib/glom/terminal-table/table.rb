@@ -175,7 +175,7 @@ module Terminal
       # Make a column index to column size mapping, then sort it
       current_index = -1
       total_column_widths = @column_widths.map { |s| current_index +=1; [current_index, s + cell_spacing] }
-      total_column_widths.sort_by! { |a,b| b }
+      total_column_widths = total_column_widths.sort_by { |a,b| b }
 
       packed_length = 0
       current_index = 0

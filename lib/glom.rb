@@ -42,7 +42,7 @@ module Glom
 	end
 	
 	def sort
-	  @packages.sort_by! do |package|
+	  @packages = @packages.sort_by do |package|
 	    -package[3]
 	  end
 	end
