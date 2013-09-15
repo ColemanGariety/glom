@@ -11,7 +11,7 @@ module Glom::Npm
     json = Glom.get(URL)
     
     packages = JSON.parse(json)['packages'].select do |package|
-      package[1].downcase.include? query.downcase if package[1].is_a? String and package[3].is_a? String and !package[5].nil?
+      Glom.match(package[1], query) if package[1].is_a? String and package[3].is_a? String and !package[5].nil?
     end
 
     packages.map do |package|

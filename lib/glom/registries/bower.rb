@@ -11,7 +11,7 @@ module Glom::Bower
 	  json = Glom.get(URL)
     
     packages = JSON.parse(json).select do |package|
-      package['description'].downcase.include? query.downcase if package['description'].is_a? String
+      Glom.match(package['description'], query) if package['description'].is_a? String
     end
     
     packages.map do |package|

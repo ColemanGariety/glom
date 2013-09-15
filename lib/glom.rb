@@ -99,4 +99,13 @@ module Glom
     
     return json
 	end
+	
+	def match(description, query, keywords = [])
+	  keywords.concat(description.split(/\W+/))
+	  keywords.each(&:downcase!)
+	  
+	  query = query.downcase.split(/\W+/)
+	  
+	  (keywords & query).size > 0 ? true : false
+	end
 end
