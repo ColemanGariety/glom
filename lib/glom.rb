@@ -33,10 +33,12 @@ module Glom
 	end
 
 	def search
+	  puts ""
+	
 	  @registries.each do |registry|
 	    include registry
 	    
-	    puts "\nSearching `#{registry::URL}` for `#{@query}`...\n"
+	    puts "Searching '#{registry::URL}' for '#{@query}'..."
 	    
 	    (@packages ||= []).concat registry.standardize(@query)
 	  end
