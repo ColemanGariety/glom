@@ -35,7 +35,8 @@ Support for APIs can be added easily by adding `[Registry].rb` to the `lib/glom/
 - a `KEYWORDS` array
 - a `NAME` string
 - a `URL` string
-- a `standardize()` method that returns an array of packages
+- a `BLACKLIST` array (containing package names to exclude)
+- a `standardize()` method that converts `URL` into an array of packages
 
 Example:
 

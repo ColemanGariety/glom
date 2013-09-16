@@ -22,7 +22,7 @@ module Glom
 	  @@registries_all.each do |registry|
 	    registry::KEYWORDS.each do |keyword|
 	      if query.include? keyword
-	        (@registries ||= []) << registry
+	        (@registries ||= []) << registry unless defined? @registries and @registries.include? registry
 	        @query.slice! keyword
 	        @query.strip!
 	      end
@@ -46,7 +46,9 @@ module Glom
 	
 	def sort
 	  @packages = @packages.sort_by do |package|
-	    -package[3]
+	    rating = -(package[3] * package.last**3)
+	    package.pop
+	    rating
 	  end
 	end
 	
@@ -102,12 +104,12 @@ module Glom
     return json
 	end
 	
-	def match(description, query, keywords = [])
-	  keywords.concat(description.split(/\W+/))
+	def match(name, description, query, keywords = [])
+	  keywords.concat(description.split(/\W+/)).concat(name.split(/-|_/))
 	  keywords.each(&:downcase!)
 	  
 	  query = query.downcase.split(/\W+/)
-	  
-	  (keywords & query).size > 0 ? true : false
+	  puts "#{name}: #{(keywords & query).size}" if name == "express" or name == "web-builder"
+	  (keywords & query).size
 	end
 end
